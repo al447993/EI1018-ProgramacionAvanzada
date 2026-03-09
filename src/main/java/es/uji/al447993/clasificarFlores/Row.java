@@ -3,20 +3,19 @@ package es.uji.al447993.clasificarFlores;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Row extends Table{
-    //Atributos
+public class Row {
+
     private List<Double> data;
 
-    //Constructores
     public Row() {
         data = new ArrayList<>();
     }
+
     public Row(List<Double> data) {
         this.data = data;
     }
 
-    //Métodos
-    public List<Double> getData(){
+    public List<Double> getData() {
         return data;
     }
 

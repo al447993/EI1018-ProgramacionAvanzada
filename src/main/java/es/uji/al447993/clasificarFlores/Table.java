@@ -3,7 +3,7 @@ package es.uji.al447993.clasificarFlores;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table extends CSV {
+public class Table {
     //Atributos
     private List<String> headers;
     private List<Row> rows; //El resto de la tabla que no son headers (todas las filas)

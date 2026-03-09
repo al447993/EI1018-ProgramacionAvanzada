@@ -1,10 +1,10 @@
-/*
 // TODO: Reemplazar por el nombre de tu paquete
 package es.uji.al447993.clasificarFlores.tests;
 
 // TODO: Reemplazar por los imports de tu proyecto
 import es.uji.al447993.clasificarFlores.CSV;
 import es.uji.al447993.clasificarFlores.TableWithLabels;
+import es.uji.al447993.clasificarFlores.KNN;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,4 +56,3 @@ class KNNTest {
         assertEquals(result, knn.estimate(sample));
     }
 }
- */
