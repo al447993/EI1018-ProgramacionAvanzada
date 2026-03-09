@@ -13,9 +13,10 @@ public class Table extends CSV {
         headers = null;
         rows = null;
     }
-    public Table(List<String> headers, List<Row> filas) {
+    public Table(List<String> headers, List<? extends Row> filas) {
         this.headers = headers;
-        this.rows = filas;
+        this.rows = new ArrayList<>(filas);
+        //En filas lo hacemos así para poder utilizar la clase hija de Row
     }
 
     //Métodos

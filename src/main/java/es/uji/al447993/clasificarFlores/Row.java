@@ -1,5 +1,6 @@
 package es.uji.al447993.clasificarFlores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Row extends Table{
@@ -8,7 +9,7 @@ public class Row extends Table{
 
     //Constructores
     public Row() {
-        data = null;
+        data = new ArrayList<>();
     }
     public Row(List<Double> data) {
         this.data = data;

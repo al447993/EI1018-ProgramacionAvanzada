@@ -1,12 +1,12 @@
 package es.uji.al447993.clasificarFlores;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TableWithLabels extends Table{
     //Atributos
-    private List<RowWithLabel> rows;
     private Map<String,Integer> labelsToIndex;
 
     public TableWithLabels() {
@@ -14,12 +14,14 @@ public class TableWithLabels extends Table{
         labelsToIndex = new HashMap<String,Integer>();
     }
     public TableWithLabels(List<String> headers, List<RowWithLabel> filas) {
-        super();
+        super(headers, filas);
+        labelsToIndex = new HashMap<String,Integer>();
     }
 
     @Override
     public RowWithLabel getRowAt(int rowNumber) {
-        return rows.get(rowNumber);
+        return (RowWithLabel) super.getRowAt(rowNumber);
+        //Espera un Row, pero nosotros le pasamos un RowWithLabel, por lo que forzamos la conversión
     }
     public Integer getLabelAsInteger(String label) {
         Integer index = labelsToIndex.size();

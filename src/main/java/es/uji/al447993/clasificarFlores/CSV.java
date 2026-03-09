@@ -22,21 +22,22 @@ public class CSV {
             List<String> headers = new ArrayList<String>();
             List<Row> rows = new ArrayList<Row>();
 
-
             String linea;
             int numLinea = 0;
 
             while((linea = br.readLine()) != null) {
+                String[] elementos = linea.split(",");
                 if (numLinea == 0) {
-                    for (String elemento : linea.split(","))
-                        headers.add(elemento);
+                    for (int i = 0; i < elementos.length; i++)
+                        headers.add(elementos[i]);
                 }
                 else {
                     Row row = new Row();
-                    for (String elemento : linea.split(","))
-                        row.addData(Double.parseDouble(elemento));
+                    for (int i = 0; i < elementos.length; i++)
+                        row.addData(Double.parseDouble(elementos[i]));
                     rows.add(row);
                 }
+                numLinea++;
             }
             tabla = new Table(headers,rows);
         }
@@ -63,13 +64,13 @@ public class CSV {
             int numLinea = 0;
 
             while((linea = br.readLine()) != null) {
+                String[] elementos = linea.split(",");
                 if (numLinea == 0) {
-                    for (String elemento : linea.split(","))
-                        headers.add(elemento);
+                    for (int i = 0; i < elementos.length - 1; i++)
+                        headers.add(elementos[i]);
                 }
                 else {
                     RowWithLabel row = new RowWithLabel();
-                    String[] elementos = linea.split(",");
                     for (int i = 0; i < elementos.length - 1; i++)
                         row.addData(Double.parseDouble(elementos[i]));
 

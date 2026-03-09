@@ -1,4 +1,4 @@
-package es.uji.al447993.clasificarFlores.tests;
+/*package es.uji.al447993.clasificarFlores.tests;
 
 import org.junit.platform.suite.api.IncludeClassNamePatterns;
 import org.junit.platform.suite.api.SelectPackages;
@@ -13,3 +13,5 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 @IncludeClassNamePatterns(".*Test")
 public class TestSuite {
 }
+
+ */
