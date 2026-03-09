@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Table extends CSV {
+    //Atributos
     private List<String> headers;
     private List<Row> rows; //El resto de la tabla que no son headers (todas las filas)
 
+    //Constructores
     public Table(){
         headers = null;
         rows = null;
@@ -16,6 +18,7 @@ public class Table extends CSV {
         this.rows = filas;
     }
 
+    //Métodos
     public Row getRowAt(int rowNumber) {
         return rows.get(rowNumber);
     }
@@ -23,11 +26,19 @@ public class Table extends CSV {
     //Las columnas se consiguen extrayendo el elemento en la posición indicada
     // de cada row.
     // Ej: Columna 0, elemento de cada row en la posición 0
-    public List<Double> getColumAt(int columnNumber) {
+    public List<Double> getColumnAt(int columnNumber) {
         List<Double> column = new ArrayList<>();
         for ( Row row : rows) {
             column.add(row.getData().get(columnNumber));
         }
         return column;
+    }
+
+    public Integer getRowCount() {
+        return rows.size();
+    }
+
+    public List<String> getHeaders() {
+        return headers;
     }
 }

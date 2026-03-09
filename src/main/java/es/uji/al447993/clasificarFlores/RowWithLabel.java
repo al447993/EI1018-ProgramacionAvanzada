@@ -7,6 +7,10 @@ public class RowWithLabel extends Row {
     private String label;
 
     //Constructores
+    public RowWithLabel() {
+        super();
+        label = null;
+    }
     public RowWithLabel(List<Double> data, String label) {
         super(data);
         this.label = label;
@@ -15,5 +19,8 @@ public class RowWithLabel extends Row {
     //Métodos
     public String getLabel() {
         return label;
+    }
+    public void setLabel(String label) {
+        this.label = label;
     }
 }
