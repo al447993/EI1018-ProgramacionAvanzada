@@ -27,16 +27,15 @@ public class CSV {
 
             while((linea = br.readLine()) != null) {
                 String[] elementos = linea.split(",");
-                if (numLinea == 0) {
-                    for (int i = 0; i < elementos.length; i++)
+                Row row = new Row();
+                for (int i = 0; i < elementos.length; i++) {
+                    if (numLinea == 0)
                         headers.add(elementos[i]);
-                }
-                else {
-                    Row row = new Row();
-                    for (int i = 0; i < elementos.length; i++)
+                    else
                         row.addData(Double.parseDouble(elementos[i]));
-                    rows.add(row);
                 }
+                if (numLinea != 0)
+                    rows.add(row);
                 numLinea++;
             }
             tabla = new Table(headers,rows);
@@ -65,19 +64,19 @@ public class CSV {
 
             while((linea = br.readLine()) != null) {
                 String[] elementos = linea.split(",");
-                if (numLinea == 0) {
-                    for (int i = 0; i < elementos.length - 1; i++)
+                RowWithLabel row = new RowWithLabel();
+                for (int i = 0; i < elementos.length - 1; i++) {
+                    if (numLinea == 0)
                         headers.add(elementos[i]);
-                }
-                else {
-                    RowWithLabel row = new RowWithLabel();
-                    for (int i = 0; i < elementos.length - 1; i++)
+                    else
                         row.addData(Double.parseDouble(elementos[i]));
-
+                }
+                if (numLinea != 0) {
                     row.setLabel(elementos[elementos.length - 1]);
                     rows.add(row);
                 }
                 numLinea++;
+
             }
             tabla = new TableWithLabels(headers,rows);
         }
