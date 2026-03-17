@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CSV {
+    private static final String SEPARADOR = ",";
 
     public Table readTable(String nombreFichero) throws IOException {
 
@@ -26,7 +27,7 @@ public class CSV {
             int numLinea = 0;
 
             while((linea = br.readLine()) != null) {
-                String[] elementos = linea.split(",");
+                String[] elementos = linea.split(SEPARADOR);
                 Row row = new Row();
                 for (String elemento : elementos) {
                     if (numLinea == 0)
@@ -63,7 +64,7 @@ public class CSV {
             int numLinea = 0;
 
             while((linea = br.readLine()) != null) {
-                String[] elementos = linea.split(",");
+                String[] elementos = linea.split(SEPARADOR);
                 RowWithLabel row = new RowWithLabel();
                 for (int i = 0; i < elementos.length - 1; i++) {
                     if (numLinea == 0)
