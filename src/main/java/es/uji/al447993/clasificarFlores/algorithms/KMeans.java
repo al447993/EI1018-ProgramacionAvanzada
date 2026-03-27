@@ -2,6 +2,7 @@ package es.uji.al447993.clasificarFlores.algorithms;
 
 import es.uji.al447993.clasificarFlores.rows.Row;
 import es.uji.al447993.clasificarFlores.tables.Table;
+import es.uji.al447993.clasificarFlores.algorithms.KNN;
 
 import java.util.*;
 
@@ -22,24 +23,68 @@ public class KMeans {
         Random random = new Random(seed);
         Set<Integer> representantes = new HashSet<>();
         List<List<Double>> centroides = new ArrayList<>();
-        Map<Integer,List<Double>> grupos_centroide = new HashMap<>();
-        Map<Integer,List<Double>> grupos_contenido = new HashMap<>();
+        Map<Integer,List<Row>> grupos = new HashMap<>();
+        int num = 0;
 
-        int num = 1;
-        while (representantes.size() < numClusters) { //Elijo muestras al azar igual a los grupos que me marca que tengo
+        //Elegimos muestras al azar igual a los grupos que me marca que tengo
+        while (representantes.size() < numClusters) {
             representantes.add(random.nextInt(datos.getRowCount()));
-            grupos_centroide.put(++num,null);
-            grupos_contenido.put()
+            grupos.put(++num, new ArrayList<>());
         }
         num = 0;
-        for (int representante : representantes) {
-            Row row = datos.getRowAt(representante);
-            List<Double> contenido = row.getData();
-            centroides.add(contenido);
-            grupos.put(++num,contenido);
+        for (int numRepresentante : representantes) {
+            Row row = datos.getRowAt(numRepresentante);
+            grupos.get(++num).add(row);
+            centroides.add(row.getData());
         }
+        //Empezamos a guardar filas de la tabla en sus respectivos grupos
+        for (int i = 0; i < numIterations; i++) {
 
-        for (int i = 0; i <= numIterations; i++) {
+            //Recorremos la tabla fila por fila
+            for (int j = 0; j < datos.getRowCount(); j++) {
+                Row actual = datos.getRowAt(j); //fila actual
+                int mejorGrupo = -1;
+                double minDist = Double.MAX_VALUE;
+
+                for (int k = 0; k < numClusters; k++) {
+                    //En KNN ya tenemos el metodo para calcular distancias, por lo que lo cogemos
+                    //de allí.
+                    double dist = KNN.calcularDistancia(actual.getData(), centroides.get(k));
+
+                    if (dist < minDist) {
+                        minDist = dist;
+                        mejorGrupo = k;
+                    }
+                }
+
+                grupos.get(mejorGrupo + 1).add(actual);
+                //Le sumamos uno al grupo porque nuestros grupos van de 1 a numClusters
+                // (no empiezan por el 0) y por tanto, el número de grupo del mapa siempre
+                // será ese número + 1.
+                //Cabe matizar que las posiciones de los centroides sí van de 0 a numClusters - 1
+
+
+                //Calculamos el nuevo centroide de ese grupo
+
+                List<Row> puntos = grupos.get(mejorGrupo + 1);
+
+                List<Double> sumas = new ArrayList<>();
+
+                //Para ver el número de columnas, tengo que acceder al data de Row
+                int numColumns = puntos.get(0).getData().size();
+
+                for (int k = 0; k < numColumns; k++) {
+                    double sumaColumna = 0;
+
+                    for (Row row : puntos)
+                        sumaColumna += row.getData().get(k);
+
+                    sumas.add(sumaColumna/puntos.size());
+                }
+
+                centroides.set(mejorGrupo, sumas);
+
+            }
 
         }
 
