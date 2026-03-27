@@ -1,8 +1,8 @@
 package es.uji.al447993.clasificarFlores.tests;
 
 import es.uji.al447993.clasificarFlores.CSV;
-import es.uji.al447993.clasificarFlores.TableWithLabels;
-import es.uji.al447993.clasificarFlores.KNN;
+import es.uji.al447993.clasificarFlores.tables.TableWithLabels;
+import es.uji.al447993.clasificarFlores.algorithms.KNN;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

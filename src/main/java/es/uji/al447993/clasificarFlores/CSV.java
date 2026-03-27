@@ -1,9 +1,15 @@
 package es.uji.al447993.clasificarFlores;
 
+import es.uji.al447993.clasificarFlores.rows.Row;
+import es.uji.al447993.clasificarFlores.rows.RowWithLabel;
+import es.uji.al447993.clasificarFlores.tables.Table;
+import es.uji.al447993.clasificarFlores.tables.TableWithLabels;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,24 +26,18 @@ public class CSV {
         }
         Table tabla;
         try(BufferedReader br = new BufferedReader(new FileReader(ref))) {
-            List<String> headers = new ArrayList<String>();
             List<Row> rows = new ArrayList<Row>();
 
-            String linea;
-            int numLinea = 0;
+            String linea = br.readLine();
+            List<String> headers = new ArrayList<String>(Arrays.asList(linea.split(SEPARADOR)));
 
             while((linea = br.readLine()) != null) {
                 String[] elementos = linea.split(SEPARADOR);
                 Row row = new Row();
                 for (String elemento : elementos) {
-                    if (numLinea == 0)
-                        headers.add(elemento);
-                    else
-                        row.addData(Double.parseDouble(elemento));
+                    row.addData(Double.parseDouble(elemento));
                 }
-                if (numLinea != 0)
-                    rows.add(row);
-                numLinea++;
+                rows.add(row);
             }
             tabla = new Table(headers,rows);
         }
@@ -59,24 +59,18 @@ public class CSV {
             List<String> headers = new ArrayList<String>();
             List<RowWithLabel> rows = new ArrayList<RowWithLabel>();
 
-
-            String linea;
-            int numLinea = 0;
+            String linea = br.readLine();
+            String[] elementos = linea.split(SEPARADOR);
+            for (int i = 0; i < elementos.length - 1; i++)
+                headers.add(elementos[i]);
 
             while((linea = br.readLine()) != null) {
-                String[] elementos = linea.split(SEPARADOR);
+                elementos = linea.split(SEPARADOR);
                 RowWithLabel row = new RowWithLabel();
-                for (int i = 0; i < elementos.length - 1; i++) {
-                    if (numLinea == 0)
-                        headers.add(elementos[i]);
-                    else
-                        row.addData(Double.parseDouble(elementos[i]));
-                }
-                if (numLinea != 0) {
-                    row.setLabel(elementos[elementos.length - 1]);
-                    rows.add(row);
-                }
-                numLinea++;
+                for (int i = 0; i < elementos.length - 1; i++)
+                    row.addData(Double.parseDouble(elementos[i]));
+                row.setLabel(elementos[elementos.length - 1]);
+                rows.add(row);
 
             }
             tabla = new TableWithLabels(headers,rows);

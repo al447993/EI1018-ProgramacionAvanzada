@@ -2,8 +2,8 @@
 package es.uji.al447993.clasificarFlores.tests;
 
 // TODO: Reemplazar por los imports de tu proyecto
-import es.uji.al447993.clasificarFlores.TableWithLabels;
-import es.uji.al447993.clasificarFlores.RowWithLabel;
+import es.uji.al447993.clasificarFlores.tables.TableWithLabels;
+import es.uji.al447993.clasificarFlores.rows.RowWithLabel;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

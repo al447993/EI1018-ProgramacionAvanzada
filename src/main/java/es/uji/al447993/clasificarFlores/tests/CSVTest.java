@@ -1,8 +1,8 @@
 package es.uji.al447993.clasificarFlores.tests;
 
 import es.uji.al447993.clasificarFlores.CSV;
-import es.uji.al447993.clasificarFlores.Table;
-import es.uji.al447993.clasificarFlores.TableWithLabels;
+import es.uji.al447993.clasificarFlores.tables.Table;
+import es.uji.al447993.clasificarFlores.tables.TableWithLabels;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
