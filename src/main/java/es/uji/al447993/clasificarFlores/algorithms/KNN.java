@@ -2,7 +2,7 @@ package es.uji.al447993.clasificarFlores.algorithms;
 
 import es.uji.al447993.clasificarFlores.rows.RowWithLabel;
 import es.uji.al447993.clasificarFlores.tables.TableWithLabels;
-import es.uji.al447993.clasificarFlores.calcularDistancias.DistEuclidiana;
+import es.uji.al447993.clasificarFlores.calcularDistancias.EuclideanDistance;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class KNN implements Algorithms<TableWithLabels,List<Double>,Integer> {
         for (int i = 0; i < data.getRowCount(); i++) {
 
             List<Double> rowData = data.getRowAt(i).getData();
-            DistEuclidiana dist = new DistEuclidiana(sample, rowData);
+            EuclideanDistance dist = new EuclideanDistance(sample, rowData);
             double distancia = dist.calcularDistEucli();
 
             if (distancia < minDist) {
