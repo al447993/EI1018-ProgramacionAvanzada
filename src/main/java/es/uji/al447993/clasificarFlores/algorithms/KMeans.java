@@ -1,8 +1,10 @@
 package es.uji.al447993.clasificarFlores.algorithms;
 
+import es.uji.al447993.clasificarFlores.calcularDistancias.DistEuclidiana;
 import es.uji.al447993.clasificarFlores.rows.Row;
 import es.uji.al447993.clasificarFlores.tables.Table;
 import es.uji.al447993.clasificarFlores.excepciones.InvalidClusterNumberException;
+import es.uji.al447993.clasificarFlores.calcularDistancias.DistEuclidiana;
 
 import java.util.*;
 
@@ -55,7 +57,8 @@ public class KMeans implements Algorithms<Table,List<Double>,Integer> {
                 for (int k = 0; k < numClusters; k++) {
                     //En KNN ya tenemos el metodo para calcular distancias, por lo que lo cogemos
                     //de allí.
-                    double dist = KNN.calcularDistancia(actual.getData(), centroides.get(k));
+                    DistEuclidiana distancia = new DistEuclidiana(actual.getData(), centroides.get(k));
+                    double dist = distancia.calcularDistEucli();
 
                     if (dist < minDist) {
                         minDist = dist;
@@ -107,7 +110,8 @@ public class KMeans implements Algorithms<Table,List<Double>,Integer> {
         for (int k = 0; k < numClusters; k++) {
             //En KNN ya tenemos el metodo para calcular distancias, por lo que lo cogemos
             //de allí.
-            double dist = KNN.calcularDistancia(dato, centroides.get(k));
+            DistEuclidiana distancia = new DistEuclidiana(dato, centroides.get(k));
+            double dist = distancia.calcularDistEucli();
 
             if (dist < minDist) {
                 minDist = dist;
